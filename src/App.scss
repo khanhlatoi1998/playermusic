@@ -1,0 +1,951 @@
+* , *::before , *::after { box-sizing : border-box ; }
+
+$colorRed : #f55656 ; 
+@mixin margin($width : 85.7% , $marginTop : 0) {
+	width : $width ; 
+	margin : $marginTop auto ; 
+	padding-left : 15px ; 
+	padding-right : 15px ; 
+}
+
+a::before , a::after { text-decoration : none ; }
+a:hover { text-decoration : none ; } 
+img {
+	display : block ; 
+	max-width : 100% ; 
+}
+li { list-style : none ; }
+audio::-webkit-media-controls-play-button { background-image: url("../src/play5.png") ; }
+audio::-webkit-media-controls-panel {background-color : white ; }
+audio {
+	margin-top : 0 ; 
+	width : 100% ; 
+	border-bottom : 1px solid rgba(23 ,44 ,55 ,.2) ; 
+	margin-bottom : 10px ;
+}
+audio::-webkit-media-controls-play-button {
+	background-color : $colorRed;
+	border-radius : 50% ; 
+}
+@mixin flex($align : flex-start , $justify : flex-start , $wrap : nowrap) {
+	display : flex ; 
+	align-items : $align ; 
+	justify-content : $justify ; 
+	flex-wrap : $wrap ; 
+}
+
+header {
+	width : 100% ; 
+	padding : 0 2% ;
+	background-color : transparent ;
+	position : fixed ; 
+	z-index : 99 ; 
+	border-bottom : 1px solid rgba(255 ,255 ,255 , .2) ; 
+	nav .header {
+		@include flex(center , space-between) ; 
+		height : 80px ;
+		.header-left {
+			a {  
+				color : white ; 
+				font-size : 36px ; 
+				font-weight : 500 ; 
+				i { color : $colorRed ; }
+			}
+		}
+		.header-right {
+			@include flex(center , space-between) ; 
+			.controlClose { display : none ; }
+			.header-mainmenu > ul {
+				display : flex ; 
+				align-items : center ; 
+				margin-right : 40px ; 
+				> li { 
+					margin-left : 10px ; 
+					position : relative ; 
+					.active_line { 
+						top : 115% ; 
+						left : 10% ; 
+						width : 80% ;
+						position : absolute ; 
+						z-index : 10 ;
+						height : 3px ; 
+						background-color : $colorRed ; 
+					} 
+					i { font-size : 12px ; }
+					a { 
+						text-decoration : none ; 
+						color : white ; 
+						font-size : 17px ; 
+						font-weight : 500 ; 
+						padding : 12px ; 
+						&:hover { color : $colorRed ; transition : 1s ;  }
+					}
+					.closeClick { pointer-events: none ; cursor : pointer ; &:hover { color : $colorRed ; transition : 1s ;  } }
+					.ul-listmenu_pages {
+						background-color : black ;
+						padding : 10px 0px 10px 10px ;  
+						line-height : 40px ; 
+						width : 180px ; 
+						margin-top : 10px ; 
+						a {
+							color : white ; 
+							font-size : 14px ; 
+							padding : 8px ; 
+						}
+						a::before {
+							content : "\2022" ;
+							display : inline-block ; 
+							color : white ;
+							margin-right : 0px ; 						
+						}	
+					}
+					.listmenu_blogs ul {
+						@extend .ul-listmenu_pages  ; 
+					}
+					.styleHeaderDectop ul {
+						position : absolute ; 
+						@extend .ul-listmenu_pages  ;
+					}
+				}
+			}
+			.header_search {
+				display : flex ; 
+				border-right : 1px solid rgba(255 ,255 ,255 , .2) ;
+				width : 232px ; 
+				align-items : center ; 
+				input {
+					background-color : transparent ;
+					border : none ; 
+					padding : 0px 20px 10px 10px ;
+					margin-left : 00px ; 
+					outline : none ; 
+					margin-top: 6px ; 
+				}
+				i { color : white ; margin-top : 0px ; }
+				::placeholder { font-style : italic ; }
+			}
+			.header-social {
+				a { color : white ; }
+				i { margin-left : 30px ; font-size : 15px ; }
+				#face:hover, #twiter:hover, #pinterest:hover, #youtube:hover, #instagram:hover{ color : #f55656 ; font-size : 14.6px ; transition : 1s ; font-weight : 200; }
+			}
+		}
+		.header-mobile {
+			display : none ; 
+			.controlClose { display : block ; color : white ; font-size : 30px ; margin-left : 85% ; margin-top : 10px ; }
+			position : absolute ; 
+			width : 300px ;
+			background-color : black ; 
+			height : 1050px ; 
+			top : 0px ; 
+			margin-left : -2% ;
+			flex-direction: column;
+			justify-content : flex-start ; 
+			box-shadow : 0px 0px 30px 0 rgba(255, 255, 255, .4) ;
+			.header-mainmenu > ul {
+				display : flex ; 
+				flex-direction: column ;
+				align-items : flex-start ; 
+				margin : 0 ; 
+				padding : 0 ; 
+				> li { 
+					margin-left : 0px ; 
+					margin-top : 19px ; 
+					position : relative ; 
+					width : 100% ; 
+					.active_line { 
+						top : 135% ; 
+						left : 0% ; 
+						width : 100% ;
+						height : 1px ; 
+						position : absolute ; 
+						z-index : 10 ;
+						background-color : $colorRed ; 
+					} 
+					i { font-size : 13px ; margin-left : 72% ; }
+					a { 
+						width : 100% ;
+						text-decoration : none ; 
+						color : white ; 
+						font-size : 14px ; 
+						font-weight : 500 ; 
+						padding : 10px 20px 10px 10px  ;  
+						&:hover { color : $colorRed ; transition : 1s ;  }
+					}
+					.closeClick { pointer-events: none ; cursor : pointer ; &:hover { color : $colorRed ; transition : 1s ;  } }
+					.ul-listmenu_pages {
+						background-color : black ;
+						padding : 10px 0px 10px 10px ;  
+						line-height : 40px ; 
+						width : 180px ; 
+						margin-top : 10px ; 
+						a {
+							color : white ; 
+							font-size : 14px ; 
+							padding : 8px ; 
+						}
+						a::before {
+							content : "\2022" ;
+							display : inline-block ; 
+							color : white ;
+							margin-right : 0px ; 						
+						}	
+					}
+					.listmenu_blogs ul {
+						@extend .ul-listmenu_pages  ; 
+					}
+					.styleHeaderDectop ul {
+						position : absolute ; 
+						@extend .ul-listmenu_pages  ;
+					}
+				}
+			}
+			.header_search {
+				display : flex ; 
+				border-right : 1px solid rgba(255 ,255 ,255 , .2) ;
+				align-items : center ; 
+				justify-content : center ; 
+				margin-top : 22px ; 
+				width : 90% ; 
+				input {
+					background-color : transparent ;
+					border : none ; 
+					padding : 0px 20px 10px 10px ;
+					margin-left : 00px ; 
+					outline : none ; 
+					margin-top: 6px ; 
+				}
+				i { color : white ; margin-top : 0px ; }
+				::placeholder { font-style : italic ; }
+			}
+			.header-social {
+				a { color : white ; }
+				i { margin-left : 30px ; font-size : 15px ; }
+				margin-top : 22px ; 
+				#face:hover, #twiter:hover, #pinterest:hover, #youtube:hover, #instagram:hover{ color : #f55656 ; font-size : 14.6px ; transition : 1s ; font-weight : 200; }
+			}
+		}
+		.humburger .line {
+			display : none ; 
+			width : 27px ; 
+			height : 3px ; 
+			background-color : gray ;
+			margin : 5px auto  ;
+		}
+	}
+}
+
+/*End header*/
+
+.welcome {
+	background-image: url("../src/photo-1478737270239-2f02b77fc618.jpg") ; 
+	background-repeat : no-repeat ; 
+	background-size: cover;
+	height : 950px ; 
+	margin : 0  ; 
+	.welcome-contains {
+		position : relative ;
+		@include margin ; 
+		.welcome-title {
+			top : 170px ; 
+			position : absolute ; 
+			> h2 { font-size : 70px ; font-weight : 500 ; color : white ; margin-bottom : 30px ;  }
+			> h5 { color : white ; font-size : 18px ; margin-bottom : 65px ; }
+			@mixin A() {
+				padding : 13px 23px ;
+				border-radius : 30px ; 
+				font-weight : 500 ; 
+				letter-spacing: 1px ;
+			}
+			.subscribe {
+				margin-left : 5px ;
+				#itunes {
+					@include A ; 
+					background-color : #f55656 ; 
+					color : white ; 
+				}
+				#rss {
+					@include A ; 
+					background-color : white ; 
+					color : #232323 ; 
+					margin-left : 20px ;
+				}
+			}
+		}
+		.welcome-main {
+			cursor : pointer ; 
+			position : relative ; 
+			top : 520px ; 
+			display : flex ; 
+			height : 260px ; 
+			img { width : 22.7% ; }
+			text-decoration : none ; 
+			.welcome-content {
+				background-color : white ; 
+				width : 77.5% ; 
+				padding : 5px 30px 20px 30px ;
+				> i { color : black  ; opacity : 30% ; margin-top : -50px ; margin-left : 99% ; cursor: pointer ; &:hover {color : $colorRed ; } }
+				h1 { margin-top : -8px ; letter-spacing : 1px ; color : black ; }
+				p { margin-top : 35px ; font-size : 11.5px ; font-weight : 700 ; letter-spacing : 1px ; color : $colorRed ; }
+				.admin { 
+					color : black ; opacity : 65% ; 
+					margin-top : 18px ; 
+					margin-bottom : 5px; 
+					#by:hover , #tutorial:hover , #time:hover { color : $colorRed ; }
+				}
+				.link-share-down {
+					a { color : #a6a6a6  ;  }
+					a:hover { color : $colorRed ; transition : 1s ; }
+					span { 
+						margin-left : 65% ; 
+						> a { margin-left : 25px ; }
+					}
+				}
+			}
+		}
+	}
+}
+/*End welcome*/
+
+.LatestEpisodes {
+	width : 100% ; 
+	.contains-LE {
+		@include margin ; 
+		margin-top : 80px ; 
+		.title-LE {
+			text-align : center ; 
+			h1 {
+				position : relative ; 
+				font-size : 47px ; 
+				font-weight : 500 ; 
+				> div {
+					text-align : center ;
+					top : 135% ; 
+					margin : 20px auto ; 
+					width : 7% ;
+					height : 5px ; 
+					background-color : $colorRed ; 
+				}
+			}
+		}
+		.menu-LE ul{
+			@include flex(center , center) ; 
+			width : 100% ;
+			margin : 35px auto ; 
+			padding : 0 ; 
+			li {
+				position : relative ; 
+				padding : 10px ; 
+				margin : 5px ;
+				a {
+					text-decoration : none ; 
+					color : #a6a6a6 ; 
+					font-size : 21px ; 
+					font-weight : 500 ; 
+				}
+				div {
+					top : 80% ; 
+					left : 0% ; 
+					width : 100% ;
+					position : absolute ; 
+					z-index : 10 ;
+					height : 2px ; 
+					background-color : $colorRed ;  
+				}
+			}
+		}
+		.content-LE {
+			width : 100% ; 
+			cursor : pointer ; 
+			@include flex(center, flex-start, wrap) ; 
+			.block-LE {
+				padding : 15px ;
+				width : 50% ; 
+				@include flex(center, flex-start, wrap) ; 
+				img { width : 100% ; height : 360px  ; box-shadow: 0 1px 12px 0 rgba(0, 0, 0, .1) ;}
+				.content-block {
+					width : 100% ;
+					box-shadow: 0 1px 12px 0 rgba(0, 0, 0, .1) ;
+					text-align :  center ; 
+					padding : 20px ; 
+					p { margin-top : 10px ; font-size : 11.5px ; font-weight : 700 ; letter-spacing : 1px ; color : $colorRed ; }
+					h1 { margin-top : -5px ; letter-spacing : 1px ; line-height : 50px ;  }
+					.admin { 
+						color : black ; opacity : 65% ; 
+						margin-top : 10px ; 
+						margin-bottom : 5px; 
+						#by:hover , #tutorial:hover , #time:hover { color : $colorRed ; }
+					}
+					.link-share-down {
+						text-align : left ; 
+						a { color : #a6a6a6  ;  }
+						a:hover { color : $colorRed ; transition : 1s ; }
+						span { 
+							margin-left : 35% ; 
+							> a { margin-left : 25px ; }
+						}
+					}
+				}
+			}
+		}
+		.loadmore {
+			text-align : center ; 
+			margin-top : 90px ;
+			a {
+				color : black ; 
+				border : 2px solid $colorRed ; 
+				border-radius : 30px ; 
+				padding : 10px 35px  ; 
+				letter-spacing : 3px  ;
+				background-color : white ; 
+				&:hover { background-color : $colorRed ; color : white ; }
+			}
+		}
+	}
+}
+/*End LatestEpisodes*/ 
+
+.FeaturedGuests {
+	@include margin(77% , 90px) ; 
+	h1 { 
+		font-size : 47px ;
+		text-align :  center ;
+		position : relative ; 		
+		&::before {
+			content : "" ;
+			background-color : $colorRed ; 
+			width : 75px ;
+			height : 5px ;
+			position : absolute ; 
+			top : 70px ; 
+			left : 46% ; 
+		}
+	}
+	.img {
+		margin-top : 80px ;
+		@include flex(flex , space-between , wrap) ; 
+		.block {
+			text-align : center ; 
+			h3 { margin-top : 30px ; }
+			h5 { margin-top : 15px ; color : $colorRed ; font-weight : 400 ; }
+			img { width : 250px ; height : 250px ; }
+		}
+	}
+}
+/*End FeaturedGuests*/ 
+
+footer {
+	margin-top : 0px ;
+	width : 100% ; 
+	.top-footer {
+		background-image: url("../src/mic.png") ; 
+		background-repeat : no-repeat ; 
+		background-size: cover  ;
+		height : 200px ; 
+		margin : 0  ;
+		width : 100% ; 		
+		position : relative ; 
+		.block-top-footer {
+			@include margin(85.7%) ; 
+			padding-top : 35px  ; 
+			@include flex(center , space-between) ; 
+			.content { 
+				width : 50% ;
+				h1 { font-size : 47px ; font-weight : 500 ; color : white ; }
+				h5 { color : white ; margin-top : 18px ; }
+			}
+			form {
+				width : 50% ; 
+				input { 
+					width : 400px ; 
+					height : 44px ; 
+					border : none ; 
+					padding-left : 20px ; 
+					border-top-left-radius: 20px 20px; 
+					border-bottom-left-radius : 20px 20px ; 
+					outline : none ; 
+				}
+				button {
+					background-color : $colorRed ; 
+					color : white ;
+					font-weight : 500 ; 
+					width : 120px ; 
+					height : 44px ; 
+					border : none ; 
+					outline : none ; 
+					letter-spacing : 1px ; 
+					border-top-right-radius: 20px 20px; 
+					border-bottom-right-radius : 20px 20px ; 
+				}
+			}
+		}
+	}
+	.bottom-footer {
+		@include margin(85.7% , 45px) ;
+		padding : 15px ; 
+		display : flex ; 
+		.block {
+			width : 25% ; 
+			margin-right : 30px ;
+			h3 { margin-bottom : 40px ; }
+			p {color : #666666 ; margin-bottom : 25px ; line-height : 25px ;  font-size : 16px ;  }
+			h5 {color : #a6a6a6 ; font-weight : 400 ; line-height : 25px ; }
+			.link-footer > a {
+				margin-bottom : 18px ; 
+				display : block ; 
+				color : #666666 ; 
+				font-size : 17px ; 
+				text-decoration : none ; 
+				&:hover { color : $colorRed ; }
+			}
+			h6 { color : #a6a6a6 ; font-size : 12px ; font-weight : 400 ; letter-spacing : 2px ; }
+			> a { color : black ; text-decoration : none ; font-size : 17px ; font-weight : 600 ; &:hover { color : $colorRed ; }}
+			.icon-footer > a {
+				margin-right : 10px ;
+				color : white ; 
+				i { font-size : 15px ; border-radius : 20px ; }
+				#face { padding : 12px 15px ; background-color : #4c60ac ; }
+				#twiter{ padding : 12px  ; background-color : #00bae3 ; }
+				#pinterest { padding : 12px  ; background-color : #d91a18 ; }
+				#youtube { padding : 12px  ; background-color : #0085d7 ; }
+				#instagram { padding : 12px 13px  ; background-color : #e20000 ; }
+			}
+			.block-img {
+				margin-top : 20px ; 
+				display : flex ; 
+				img { max-width : 150px ; height : 35px ; margin-right : 5px  }
+			}
+		}
+	}
+}
+/*End footer*/
+
+.scrollUp {
+	cursor : pointer ; 
+	width : 40px ;
+	height : 40px ;
+	background-color : $colorRed ;  
+	position : fixed ; 
+	top : 85% ; 
+	left : 96.8% ; 
+	i {
+		margin-top : 32% ; 
+		margin-left : 32% ;
+		color : white ; 
+		font-size : 16px ; 
+	}
+}
+/*end scrollUp*/
+
+.linkmusic {
+	max-width : 100% ; 
+	padding-top : 20px ; 
+	.block {
+		@include margin(31% , 0px) ; 
+		text-align : center ; 
+		padding-top : 15px ;
+		margin-bottom : 15px ; 
+		background-color : white ; 
+		border-radius : 10px ; 
+		box-shadow: 0 1px 12px 0 rgba(0, 0, 0, .1) ;
+		.content-music {
+			h4 {color : $colorRed ; }
+			h2 { color : #333 ; margin-top : -5px ; }
+		}
+		.img {
+			margin-top : -15px ; 
+			padding : 0 20px ; 
+			margin-bottom : 20px ;
+			img { 
+				width : 100% ; 
+				height : 400px ; 
+				clip-path : circle(45%) ; 
+				animation: xoayvong 17s linear 1s infinite;
+				-webkit-animation: xoayvong 17s linear 1s infinite;
+				-moz-animation: xoayvong 17s linear 1s infinite;
+				-o-animation: xoayvong 17s linear 1s infinite; 
+			}  
+			@keyframes xoayvong {
+				from{
+				    -webkit-transform:rotate(0deg);
+				    -moz-transform:rotate(0deg);
+				    -o-transform:rotate(0deg);
+				}
+				to{
+			        -webkit-transform:rotate(360deg);
+			        -moz-transform:rotate(360deg);
+			        -o-transform:rotate(360deg);
+				}
+			}
+		}
+		.block-control {
+			.input-range {
+				position : relative ;
+				background-color : blue ; 
+				align-items :  center ; 
+				height : 3px ; 
+				input[type=range] {
+					  height: 100% ; 
+					  -webkit-appearance: none;
+					  margin: 10px 0;
+					  width: 100%;
+					}
+					input[type=range]:focus {
+					  outline: none;
+					}
+					input[type=range]::-webkit-slider-runnable-track {
+					  width: 100%;
+					  height: 100% ; 	
+					  cursor: pointer;
+					  animate: 0.2s;
+					  background: white ;
+					  border-radius: 1px;
+					}
+					input[type=range]::-webkit-slider-thumb {
+					  height: 12px;
+					  width: 55px;
+					  border-radius: 15px;
+					  background: transparent  ;
+					  cursor: pointer;
+					  -webkit-appearance: none;
+					  margin-top: -4px;
+					  position : absolute ; 
+					  z-index : 5 ; 
+					  left : 0% ; 
+					}
+				.support-input {
+					height : 100% ;
+					width : 100% ;
+					position : absolute ; 
+					z-index : 3 ; 
+					background-color : #33333345 ; 
+					top : 0 ; 
+					#selectValue  {
+						position : absolute ;
+						z-index : 4 ; 
+						width : 10% ;
+						height : 100%; 
+						background-color : $colorRed ; 
+					}
+					.selectBtn {
+						position : absolute ;
+						z-index : 4 ; 
+						width : 65px ;
+						height : 18px ;
+						line-height : 16.5px ;
+						background-color : $colorRed ; 
+						color :  white ; 
+						text-align : center ;
+						align-items : center ; 
+						font-size : 10px ; 
+						top : -8px ; 
+						border-radius : 10px ; 
+						left : 0% ;
+					}
+				}
+			}	
+			font-size : 22px ; 
+			color : #333333d4 ; 
+			font-weight : 100 ; 
+			.control {
+				margin-top : 35px ; 
+				cursor : pointer ; 
+				@include flex(center , space-between) ; 
+				#play { font-size : 37px ; color : #f55656 ; }
+			}
+			.bottom-control {
+				margin-top : 20px ; 
+				margin-bottom : 35px ;
+				@include flex(center , space-between) ;
+				div {
+					@include flex(center , center) ; 
+					#listmusic {font-size : 18px ; margin-right : 10px ; }
+					
+				}
+			}
+		}
+		.block-listmusic {
+			background-color : transparent  ;
+			padding : 7px ;
+			border-radius : 7px ; 
+			height : 60px ;
+			cursor : pointer ; 
+			.singer-music {
+				@include flex(center , space-between) ; 
+				height : 100% ; 
+				.left-singer-music {
+					@include flex(center , center) ;  
+					height : 100% ;
+					img { width : 55px ; height : 100% ; clip-path: circle(67%) ;  }
+					.content-music {
+						text-align : left ; 
+						margin-top : 8px ; 
+						line-height : 7px ; 
+						margin-left : 10px ; 
+					}
+				}
+				.humburger-music .line{
+					width : 27px ; 
+					height : 3px ; 
+					background-color : #33333345 ;
+					margin : 2px auto  ;
+				}
+			}
+		}
+		.text {
+			width : 200px ; 
+			height : 200px ; 
+			background-color : yellow ;
+			text-align : center	;
+		}
+	}
+}
+.close {display : none ; }
+
+@media all and (max-width : 414px ) {
+	header nav .header {
+		.humburger .line {
+			display : block ; 
+		}
+	}
+	.welcome {
+		height : 1200px ; 
+		.welcome-contains {
+			width : 99.8% ;
+			.welcome-title {
+				top : 100px ; 
+				position : absolute ; 
+				> h2 { font-size : 36px ; margin-bottom : 20px ;  }
+				> h5 { margin-bottom : 55px ; line-height : 25px ;  }
+				@mixin A() {
+					padding : 13px 0 ;
+					border-radius : 30px ; 
+					font-weight : 500 ; 
+					letter-spacing: 1px ;
+					text-align : center ; 
+				}
+				.subscribe {
+					#itunes {
+						display : block ; 
+						width : 60% ; 
+						@include A ; 
+					}
+					#rss {
+						display : block ; 
+						width : 50% ; 
+						margin-top : 18px; 
+						@include A ; 
+						margin-left : 0px ;
+					}
+				}
+			}
+			.welcome-main {
+				top : 490px ; 
+				flex-wrap : wrap ; 
+				height : 593px ; 
+				img { width : 100% ; height : 65% ;  }
+				.welcome-content {
+					width : 100% ; 
+					height : 35%; 
+					padding : 5px 5px 20px 15px ;
+					> i { font-size : 13px ; margin-left : 92% ;  }
+					h1 { margin-top : -8px ; letter-spacing : 0px ; font-size : 20px ; }
+					p { margin-top : 10px ; font-size : 11px ; font-weight : 750 ; letter-spacing : 1px ; color : $colorRed ; }
+					.admin { 
+						color : black ; opacity : 65% ; 
+						margin-top : 18px ; 
+						margin-bottom : 5px; 
+						font-size : 11px  ;
+						#by:hover , #tutorial:hover , #time:hover { color : $colorRed ; }
+					}
+					audio::-webkit-media-controls-panel {background-color : white ; }
+					audio {
+						margin-top : 0 ; 
+						width : 95% ; 
+						border-bottom : 1px solid rgba(23 ,44 ,55 ,.2) ; 
+						margin-bottom : 10px ;
+					}
+					.link-share-down {
+						a { color : #a6a6a6  ; }
+						a:hover { color : $colorRed ; transition : 1s ; }
+						span { 
+							margin-left : 22% ; 
+							> a { margin-left : 25px ; }
+						}
+						font-size : 12px ; 
+					}
+				}
+			}
+		}
+	}
+	.LatestEpisodes {
+		.contains-LE {
+			width : 99.8% ;
+			.title-LE {
+				text-align : center ; 
+				h1 {
+					font-size : 27px ; 
+					> div {
+						width : 20% ;
+					}
+				}
+			}
+			.menu-LE ul{
+				width : 99.8% ;
+				li {
+					position : relative ; 
+					padding : 5px ; 
+					margin : 5px ;
+					margin-right : 0 ;  
+					a {
+						font-size : 14px ; 
+					}
+				}
+			}
+			.content-LE {
+				margin-top : -20px ;
+				.block-LE {
+					padding-left : 0px ;
+					padding-right : 0 ; 
+					width : 100% ; 
+					.content-block {
+						width : 100% ; 
+						padding : 20px ; 
+						p { margin-top : 0px ; font-size : 11px ; }
+						h1 { font-size : 20px ; letter-spacing : 0px ; line-height : 30px ;  }
+						.admin { 
+							font-size : 12px ; 
+						}
+						audio::-webkit-media-controls-panel {background-color : white ; }
+						audio {
+							margin-top : 0 ; 
+							width : 100% ; 
+							border-bottom : 1px solid rgba(23 ,44 ,55 ,.2) ; 
+							margin-bottom : 10px ;
+						}
+						.link-share-down {
+							text-align :  center ; 
+							font-size : 12px ; 							
+							span { 
+								margin-left : 0% ; 
+								> a { margin-left : 25px ; }
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	.FeaturedGuests {
+		@include margin(99.8% , 90px) ; 
+		h1 { 
+			font-size : 27px ;
+			&::before {
+				width : 75px ;
+				height : 5px ;
+				top : 50px ; 
+				left : 40% ; 
+			}
+		}
+		.img {
+			width : 100% ; 
+			.block {
+				width : 100% ;
+				margin-bottom : 70px ; 
+				img { width : 100% ; height : 358px ; }
+			}
+		}
+	}
+	footer {
+		margin-top : -100px ;
+		.top-footer {
+			background-image: url("../src/mic2.png") ;
+			height : 252px ; 
+			margin : 0  ;
+			width : 100% ; 		
+			position : relative ; 
+			.block-top-footer {
+				@include margin(99.8%) ; 
+				padding-top : 35px  ; 
+				@include flex(center, space-between, wrap ) ; 
+				.content { 
+					width : 100% ;
+					h1 { font-size : 24px ;  }
+				}
+				form {
+					width : 100% ; 
+					input { 
+						margin-top : 40px ; 
+						height : 44px ;
+						width : 65% ; 
+						padding-left : 20px ; 
+						border-top-left-radius: 20px 20px; 
+						border-bottom-left-radius : 20px 20px ; 
+						outline : none ; 
+					}
+				}
+			}
+		}
+		.bottom-footer {
+			@include margin(99.8% , 45px) ;
+			flex-wrap : wrap ; 
+			.block {
+				width : 100% ; 
+				margin-bottom : 40px ; 
+				margin-right : 30px ;
+			}
+		}
+	}
+	.scrollUp {
+		top : 86% ; 
+		left : 89.8% ; 
+		i {
+			margin-top : 32% ; 
+			margin-left : 32% ;
+			color : white ; 
+			font-size : 16px ; 
+		}
+	}
+	.linkmusic {
+		.block {
+			@include margin(93% , 0px) ; 
+			.img {
+				margin-top : -25px ; 
+				padding : 0 20px ; 
+				margin-bottom : 0px ;
+				img { 
+					width : 100% ; 
+					height : 400px ; 
+					clip-path : circle(41%) ; 
+				}  
+			}
+		}
+	}
+}
+	
+@media all and (max-width : 375px ) {
+	.welcome .welcome-contains .welcome-main .welcome-content {
+		height : 235px ; 
+		.link-share-down {
+			a { color : #a6a6a6  ; }
+			a:hover { color : $colorRed ; transition : 1s ; }
+			span { 
+				margin-left : 27px ; 
+				> a { margin-left : 27px ; }
+			}
+			font-size : 12px ; 
+		}
+	}
+	footer	.top-footer .block-top-footer form {
+		width : 100% ; 
+		input { 
+			margin-top : 40px ; 
+			height : 44px ;
+			width : 58% ; 
+			padding-left : 20px ; 
+			border-top-left-radius: 20px 20px; 
+			border-bottom-left-radius : 20px 20px ; 
+			outline : none ; 
+		}
+	}
+}
